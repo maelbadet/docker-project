@@ -71,3 +71,30 @@
 .add-to-cart-btn:hover {
     background-color: #c53030;
 }
+
+.favorite-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #fff;
+    color: #e53e3e;
+    border: 2px solid #e53e3e;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.favorite-btn:hover {
+    background-color: #e53e3e;
+    color: #fff;
+}
+
+.favorite-btn.is-favorite {
+    background-color: #e53e3e;
+    color: #fff;
+}

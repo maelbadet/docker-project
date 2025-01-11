@@ -2,7 +2,7 @@
 ## <font color='greeen'>Introduction au projet</font>
 Le but de ce projet est de créer une petite application e-commerce pour acheter de la moutarde en ligne.
 
-À noter que je n'ai pas eu le temps de finir la partie fonctionnelle de la partie commande de l'application e-commerce, 
+À noter que je n'ai pas eu le temps de finir la partie fonctionnelle de la partie commande et panier, 
 mais voici ce que j'ai fait :
 
 ## <font color='greeen'>Côté frontend</font>

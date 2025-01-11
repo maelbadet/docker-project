@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
-import './css/home.css';
+import "./css/home.css";
 import Loader from "./loader";
 
 function Home() {
@@ -30,53 +30,87 @@ function Home() {
             });
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem("userId");
-        setUser(null);
-        navigate("/login");
-    };
-
     if (loading) {
         return <Loader />;
     }
 
     return (
-        <div>
-            <h2>Bienvenue chez l'Egregor</h2>
-            <p>La moutarde Fallot, la moutarde qu'il vous faut !</p>
+        <div className="home-container">
+            {/* Section Présentation */}
+            <div className="intro-section">
+                <h1>Bienvenue chez l'Egregor</h1>
+                <p>
+                    La moutarde Fallot, dernière moutarderie artisanale de France, incarne
+                    un savoir-faire unique et une tradition ancestrale. Découvrez nos produits
+                    authentiques et laissez-vous séduire par des saveurs incomparables.
+                </p>
+            </div>
 
-            <h3>Nos Produits</h3>
-
-            <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={30}
-                slidesPerView={3}
-                navigation
-                pagination={{ clickable: true }}
-                style={{ padding: "20px" }}
-            >
-                {products.map((product) => (
-                    <SwiperSlide key={product.id}>
-                        <div
-                            onClick={() => navigate(`/product/${product.id}`)}
-                            className="product-card"
-                        >
-                            <img
-                                src={`http://localhost:3000/img/${product.id}.png`}
-                                alt={product.name}
-                                className="product-image"
-                            />
-                            <div className="product-details">
-                                <h4 className="product-title">{product.name}</h4>
-                                <div className="product-info">
-                                    <span className="product-format">{product.format} cl</span>
-                                    <span className="product-price">{product.price}€</span>
+            {/* Section Slider */}
+            <div className="products-section">
+                <h3>Nos derniers Produits</h3>
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={30}
+                    slidesPerView={3}
+                    navigation
+                    pagination={{ clickable: true }}
+                    style={{ padding: "20px" }}
+                >
+                    {products.map((product) => (
+                        <SwiperSlide key={product.id}>
+                            <div
+                                onClick={() => navigate(`/product/${product.id}`)}
+                                className="product-card"
+                            >
+                                <img
+                                    src={`http://localhost:3000/img/${product.id}.png`}
+                                    alt={product.name}
+                                    className="product-image"
+                                />
+                                <div className="product-details">
+                                    <h4 className="product-title">{product.name}</h4>
+                                    <div className="product-info">
+                                        <span className="product-format">{product.format} cl</span>
+                                        <span className="product-price">{product.price}€</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Nouvelle Section : Pourquoi Fallot ? */}
+            <div className="why-us-section">
+                <h3>Pourquoi choisir la moutarde Fallot ?</h3>
+                <div className="points">
+                    <div className="point">
+                        <img src="/path/to/icon1.png" alt="Artisanat" />
+                        <h4>Artisanat Authentique</h4>
+                        <p>
+                            Une fabrication traditionnelle respectant des méthodes transmises
+                            de génération en génération.
+                        </p>
+                    </div>
+                    <div className="point">
+                        <img src="/path/to/icon2.png" alt="Ingrédients de qualité" />
+                        <h4>Ingrédients de Qualité</h4>
+                        <p>
+                            Des graines de moutarde rigoureusement sélectionnées et des
+                            ingrédients naturels.
+                        </p>
+                    </div>
+                    <div className="point">
+                        <img src="/path/to/icon3.png" alt="Savoir-faire unique" />
+                        <h4>Savoir-Faire Unique</h4>
+                        <p>
+                            Une expertise qui garantit des produits savoureux et
+                            incomparables.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

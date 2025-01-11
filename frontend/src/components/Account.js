@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import {UserContext} from "../UserContext";
 import {useNavigate} from "react-router-dom";
+import Loader from "./loader";
 import "./css/account.css";
 
 function Account() {
@@ -48,24 +49,38 @@ function Account() {
 
     const handleSave = (e) => {
         e.preventDefault();
+
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+            console.error("userId introuvable dans le localStorage");
+            return;
+        }
+
         fetch("http://localhost:8000/api/updateInfo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({
+                ...formData,
+                userId,
+            }),
         })
             .then((response) => response.json())
             .then((data) => {
-                setUserInfo(data);
-                setEditMode(false);
+                if (data.status === "success") {
+                    setUserInfo(data.user);
+                    setEditMode(false);
+                } else {
+                    console.error("Erreur serveur :", data.message);
+                }
             })
             .catch((error) => console.error("Erreur lors de la mise à jour des informations :", error));
     };
 
     const renderSection = () => {
         if (!userInfo) {
-            return <p>Chargement des informations utilisateur...</p>;
+            return  <Loader />;
         }
 
         switch (activeSection) {
@@ -115,19 +130,35 @@ function Account() {
                                         required
                                     />
                                 </div>
-                                <button type="submit">Sauvegarder</button>
-                                <button type="button" onClick={() => setEditMode(false)}>
-                                    Annuler
-                                </button>
+                                <div className="action-buttons">
+                                    <button type="submit">Sauvegarder</button>
+                                    <button type="button" onClick={() => setEditMode(false)}>
+                                        Annuler
+                                    </button>
+                                </div>
                             </form>
                         ) : (
-                            <ul>
-                                <li><strong>Nom d'utilisateur :</strong> {userInfo.username}</li>
-                                <li><strong>Prénom :</strong> {userInfo.firstName}</li>
-                                <li><strong>Nom :</strong> {userInfo.lastName}</li>
-                                <li><strong>Email :</strong> {userInfo.email}</li>
-                                <button onClick={() => setEditMode(true)}>Modifier</button>
-                            </ul>
+                            <div className="personal-info">
+                                <div className="info-item">
+                                    <label>Nom d'utilisateur :</label>
+                                    <span>{userInfo.username}</span>
+                                </div>
+                                <div className="info-item">
+                                    <label>Prénom :</label>
+                                    <span>{userInfo.firstName}</span>
+                                </div>
+                                <div className="info-item">
+                                    <label>Nom :</label>
+                                    <span>{userInfo.lastName}</span>
+                                </div>
+                                <div className="info-item">
+                                    <label>Email :</label>
+                                    <span>{userInfo.email}</span>
+                                </div>
+                                <div className="action-buttons">
+                                    <button onClick={() => setEditMode(true)}>Modifier les informations</button>
+                                </div>
+                            </div>
                         )}
                     </div>
                 );

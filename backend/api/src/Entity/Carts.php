@@ -16,10 +16,10 @@ class Carts
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
-    private ?Users $user_id = null;
+    private ?Users $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
-    private ?Products $product_id = null;
+    private ?Products $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
@@ -37,24 +37,24 @@ class Carts
 
     public function getUserId(): ?users
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?users $user_id): static
+    public function setUserId(?users $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getProductId(): ?products
     {
-        return $this->product_id;
+        return $this->product;
     }
 
-    public function setProductId(?products $product_id): static
+    public function setProductId(?products $product): static
     {
-        $this->product_id = $product_id;
+        $this->product = $product;
 
         return $this;
     }

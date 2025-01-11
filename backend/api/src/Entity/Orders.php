@@ -18,7 +18,7 @@ class Orders
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?users $user_id = null;
+    private ?Users $user = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $status = null;
@@ -47,12 +47,12 @@ class Orders
 
     public function getUserId(): ?users
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?users $user_id): static
+    public function setUserId(?users $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

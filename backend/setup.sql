@@ -28,6 +28,7 @@ CREATE TABLE favorites (
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at DATETIME DEFAULT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
@@ -109,9 +110,9 @@ INSERT INTO users (username, password, first_name, last_name, email) VALUES
     ('user3', 'hashed_password3', 'user3', 'test3', 'user3.test@gmail.com');
 
 INSERT INTO orders (user_id, status) VALUES
-    (1, 1), -- Commande de user1
-    (2, 1), -- Commande de user2
-    (3, 1); -- Commande de user3
+    (1, 1),
+    (2, 1),
+    (3, 1);
 
 INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
     (1, 1, 2, 1.48),
@@ -124,3 +125,5 @@ INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
 INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
     (3, 17, 1, 1.56),
     (3, 20, 4, 2.27);
+
+
