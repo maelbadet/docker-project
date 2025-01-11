@@ -17,10 +17,10 @@ class OrderItems
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
-    private ?orders $order_id = null;
+    private ?Orders $order_id = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
-    private ?products $product_id = null;
+    private ?Products $product_id = null;
 
     #[ORM\Column]
     private ?int $quantity = null;

@@ -16,10 +16,10 @@ class Carts
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
-    private ?users $user_id = null;
+    private ?Users $user_id = null;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
-    private ?products $product_id = null;
+    private ?Products $product_id = null;
 
     #[ORM\Column]
     private ?int $quantity = null;

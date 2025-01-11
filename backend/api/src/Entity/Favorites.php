@@ -16,10 +16,10 @@ class Favorites
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'favorites')]
-    private ?users $user_id = null;
+    private ?Users $user_id = null;
 
     #[ORM\ManyToOne(inversedBy: 'favorites')]
-    private ?products $product_id = null;
+    private ?Products $product_id = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
