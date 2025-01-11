@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class FavoriteController extends AbstractController
 {
-    #[Route('/api/add-favorite', name: 'app_add_favorite', methods: ['POST'])]
+    #[Route('/api/addFavorite', name: 'app_add_favorite', methods: ['POST'])]
     public function addFavorite(
 		Request $request,
 		FavoritesRepository $favoritesRepository,
@@ -21,7 +21,7 @@ class FavoriteController extends AbstractController
         ]);
     }
 
-	#[Route('/api/remove-favorite', name: 'app_remove_favorite', methods: ['POST'])]
+	#[Route('/api/removeFavorite', name: 'app_remove_favorite', methods: ['POST'])]
 	public function removeFavorite(): Response
 	{
 		return $this->render('favorite/index.html.twig', [
