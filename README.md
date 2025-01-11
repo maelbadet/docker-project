@@ -38,6 +38,12 @@ suis le plus familier. C'est un framework français open-source avec une documen
 Lors du premier lancement du projet, il faudra exécuter la commande `docker-compose up --build` pour installer les 
 différentes dépendances liées aux frameworks <font color="red">React</font> et <font color="red">Symfony</font>.
 
+Ensuite, une fois les containeurs lancer, il va falloir aller dans le containeurs back-end pour 
+installer les dependances de composer, car je n'ai pas reussi à les mettre dans le Dockerfile
+la base de donnee n'etant pas lancer avant, ça me provoquait une erreur. Il faut donc faire : 
+- `docker exec -it php-backend bash` pour entrer dans le container backend
+- `composer i` pour installer les dependances de composer.
+
 Une fois le projet initialisé une première fois, il suffira de faire uniquement `docker-compose up` pour démarrer 
 uniquement les conteneurs sans avoir à tout réinstaller.
 
